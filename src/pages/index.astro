@@ -1,0 +1,484 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const base = import.meta.env.BASE_URL;
+
+const churchFeatures = [
+  {
+    heading: 'Know your congregation',
+    body: 'Member profiles with family connections, privacy controls, and a self-service member portal. Shepherd people, not spreadsheets.',
+  },
+  {
+    heading: 'Coordinate ministry',
+    body: 'Manage groups, ministries, and leadership with clarity. Track who serves where and keep capacity in order.',
+  },
+  {
+    heading: 'Faithful records',
+    body: 'Attendance, giving, and communication — the records that help you pastor well and report faithfully to your vestry or session.',
+  },
+];
+
+const devFeatures = [
+  {
+    heading: 'Modern stack',
+    body: '.NET 10, ASP.NET Core, MediatR, EF Core, and PostgreSQL on the backend. Angular 21 with signals-first state on the frontend.',
+  },
+  {
+    heading: 'Clean architecture',
+    body: 'CQRS via MediatR, strict Clean Architecture layering, FluentValidation, and consistent conventions throughout. Readable and extensible.',
+  },
+  {
+    heading: 'Built openly',
+    body: 'Every feature and architectural decision was shaped collaboratively with an AI pair programmer. The history is in the commits and ADRs.',
+  },
+];
+
+const modules = [
+  { name: 'Members & Families',  available: true,  desc: 'Profiles, privacy controls, family connections, and user accounts.' },
+  { name: 'Organizations',       available: true,  desc: 'Multi-site hierarchy with per-org settings.' },
+  { name: 'Groups & Ministries', available: true,  desc: 'Types, leaders, schedules, and capacity.' },
+  { name: 'Attendance',          available: false, desc: 'Track gathering attendance and engagement.' },
+  { name: 'Giving',              available: false, desc: 'Pledges, contributions, and giving statements.' },
+  { name: 'Events',              available: false, desc: 'Church calendar and RSVP management.' },
+  { name: 'Sermons',             available: false, desc: 'Archive and share your teaching library.' },
+  { name: 'Volunteers',          available: false, desc: 'Schedule, confirm, and thank your servers.' },
+  { name: 'Communication',       available: false, desc: 'Email and announcements to the right people.' },
+];
+---
+
+<Layout>
+  <!-- ─── Nav ──────────────────────────────────────────── -->
+  <nav>
+    <div class="container nav-inner">
+      <a href={base} class="brand">
+        <img src={`${base}icon.svg`} alt="FiveTalents icon" width="36" height="36" />
+        <span>FiveTalents</span>
+      </a>
+      <a
+        href="https://github.com/JasonGoble/FiveTalents"
+        class="btn btn-ghost"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        GitHub &rarr;
+      </a>
+    </div>
+  </nav>
+
+  <!-- ─── Hero ─────────────────────────────────────────── -->
+  <section class="hero">
+    <div class="container hero-inner">
+      <p class="overline">Free &middot; Open source &middot; Built for the local church</p>
+      <h1>Steward your church faithfully.</h1>
+      <p class="hero-sub">
+        FiveTalents helps churches manage people, ministry, and resources with tools
+        designed around the rhythms of real church life&nbsp;&mdash; not corporate CRM software.
+      </p>
+      <div class="hero-actions">
+        <a
+          href="https://github.com/JasonGoble/FiveTalents"
+          class="btn btn-gold"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Get Started on GitHub
+        </a>
+        <a href="#for-churches" class="btn btn-outline">Learn More</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── For Churches ─────────────────────────────────── -->
+  <section class="section" id="for-churches">
+    <div class="container">
+      <div class="section-header">
+        <h2>For your church</h2>
+        <p class="section-sub">
+          Simple tools that support the work of ministry &mdash; without the complexity
+          or cost of enterprise software.
+        </p>
+      </div>
+      <div class="card-grid">
+        {churchFeatures.map(f => (
+          <div class="card">
+            <div class="card-rule" />
+            <h3>{f.heading}</h3>
+            <p>{f.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── Modules ──────────────────────────────────────── -->
+  <section class="section section-alt" id="features">
+    <div class="container">
+      <div class="section-header">
+        <h2>What&rsquo;s included</h2>
+        <p class="section-sub">
+          Core member and ministry management is available today.
+          Additional modules are under active development.
+        </p>
+      </div>
+      <div class="modules-grid">
+        {modules.map(m => (
+          <div class={`module ${m.available ? 'available' : 'planned'}`}>
+            <span class="module-badge">{m.available ? 'Available' : 'Planned'}</span>
+            <h4>{m.name}</h4>
+            <p>{m.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── For Developers ───────────────────────────────── -->
+  <section class="section section-dark" id="for-developers">
+    <div class="container">
+      <div class="section-header">
+        <h2>For developers</h2>
+        <p class="section-sub">
+          FiveTalents is free and open source. Built with a modern stack, clean
+          architecture, and a transparent AI-assisted development workflow.
+        </p>
+      </div>
+      <div class="card-grid">
+        {devFeatures.map(f => (
+          <div class="card card-dark">
+            <div class="card-rule card-rule-gold" />
+            <h3>{f.heading}</h3>
+            <p>{f.body}</p>
+          </div>
+        ))}
+      </div>
+      <div class="section-actions">
+        <a
+          href="https://github.com/JasonGoble/FiveTalents"
+          class="btn btn-gold"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          View on GitHub
+        </a>
+        <a
+          href="https://github.com/JasonGoble/FiveTalents/issues"
+          class="btn btn-outline-light"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Open Issues
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── Footer ───────────────────────────────────────── -->
+  <footer>
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <img src={`${base}icon-transparent.svg`} alt="FiveTalents icon" width="28" height="28" />
+        <span>FiveTalents</span>
+      </div>
+      <p class="footer-copy">
+        Free and open source &mdash; MIT License.<br />
+        Built by a senior software engineer and Anglican deacon.
+      </p>
+      <a
+        href="https://github.com/JasonGoble/FiveTalents"
+        class="footer-link"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        GitHub &rarr;
+      </a>
+    </div>
+  </footer>
+</Layout>
+
+<style>
+  /* ── Layout ─────────────────────────────────────── */
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  /* ── Nav ─────────────────────────────────────────── */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: var(--parchment);
+    border-bottom: 1px solid var(--parchment-mid);
+  }
+
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: var(--midnight);
+  }
+
+  /* ── Buttons ─────────────────────────────────────── */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    padding: 0.625rem 1.25rem;
+    border-radius: 4px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: opacity 0.15s, background 0.15s;
+    cursor: pointer;
+  }
+
+  .btn-gold {
+    background: var(--gold);
+    color: var(--midnight);
+  }
+  .btn-gold:hover { opacity: 0.88; }
+
+  .btn-ghost {
+    color: var(--midnight);
+    border: 1px solid var(--parchment-mid);
+  }
+  .btn-ghost:hover { background: var(--parchment-mid); }
+
+  .btn-outline {
+    border: 1px solid rgba(255,255,255,0.35);
+    color: #fff;
+  }
+  .btn-outline:hover { background: rgba(255,255,255,0.08); }
+
+  .btn-outline-light {
+    border: 1px solid rgba(255,255,255,0.35);
+    color: #fff;
+  }
+  .btn-outline-light:hover { background: rgba(255,255,255,0.08); }
+
+  /* ── Hero ────────────────────────────────────────── */
+  .hero {
+    background: var(--midnight);
+    color: #fff;
+    padding: 5rem 0 4.5rem;
+  }
+
+  .hero-inner {
+    max-width: 720px;
+  }
+
+  .overline {
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.25rem;
+    font-weight: 500;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    color: #fff;
+    margin-bottom: 1.25rem;
+  }
+
+  .hero-sub {
+    font-size: 1.125rem;
+    color: rgba(255,255,255,0.72);
+    max-width: 600px;
+    margin-bottom: 2.25rem;
+    line-height: 1.7;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 0.875rem;
+    flex-wrap: wrap;
+  }
+
+  /* ── Sections ────────────────────────────────────── */
+  .section {
+    padding: 5rem 0;
+  }
+
+  .section-alt {
+    background: var(--parchment-mid);
+  }
+
+  .section-dark {
+    background: var(--midnight);
+    color: #fff;
+  }
+
+  .section-dark h2 {
+    color: #fff;
+  }
+
+  .section-dark .section-sub {
+    color: rgba(255,255,255,0.65);
+  }
+
+  .section-header {
+    max-width: 600px;
+    margin-bottom: 3rem;
+  }
+
+  .section-header h2 {
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    margin-bottom: 0.75rem;
+  }
+
+  .section-sub {
+    font-size: 1rem;
+    color: var(--slate);
+    line-height: 1.7;
+  }
+
+  .section-actions {
+    display: flex;
+    gap: 0.875rem;
+    flex-wrap: wrap;
+    margin-top: 3rem;
+  }
+
+  /* ── Cards ───────────────────────────────────────── */
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .card {
+    background: #fff;
+    border: 1px solid var(--parchment-mid);
+    border-radius: 6px;
+    padding: 2rem;
+  }
+
+  .card-dark {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .card-dark h3 {
+    color: #fff;
+  }
+
+  .card-dark p {
+    color: rgba(255,255,255,0.65);
+  }
+
+  .card-rule {
+    width: 2rem;
+    height: 2px;
+    background: var(--parchment-mid);
+    margin-bottom: 1.25rem;
+    border-radius: 1px;
+  }
+
+  .card-rule-gold {
+    background: var(--gold);
+  }
+
+  .card h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.625rem;
+  }
+
+  .card p {
+    font-size: 0.9375rem;
+    color: var(--slate);
+    line-height: 1.65;
+  }
+
+  /* ── Modules Grid ────────────────────────────────── */
+  .modules-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1rem;
+  }
+
+  .module {
+    background: #fff;
+    border: 1px solid var(--parchment-mid);
+    border-radius: 6px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+  }
+
+  .module.planned {
+    opacity: 0.7;
+  }
+
+  .module-badge {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 0.375rem;
+  }
+
+  .available .module-badge { color: var(--forest); }
+  .planned   .module-badge { color: var(--slate); }
+
+  .module h4 {
+    font-size: 1.0625rem;
+    font-weight: 500;
+  }
+
+  .module p {
+    font-size: 0.875rem;
+    color: var(--slate);
+    line-height: 1.55;
+  }
+
+  /* ── Footer ──────────────────────────────────────── */
+  footer {
+    background: color-mix(in srgb, var(--midnight) 90%, black);
+    color: rgba(255,255,255,0.6);
+    padding: 3rem 0;
+  }
+
+  .footer-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .footer-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.125rem;
+    color: rgba(255,255,255,0.85);
+  }
+
+  .footer-copy {
+    font-size: 0.875rem;
+    line-height: 1.6;
+  }
+
+  .footer-link {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--gold);
+    white-space: nowrap;
+  }
+  .footer-link:hover { opacity: 0.8; }
+</style>
